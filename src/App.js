@@ -1,28 +1,46 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css'
 
-function Card(props){
+const LoadingButton = (props) => {
   return(
-    <section>
-        <h2> {props.icon} Title </h2>
-        {props.children}
-    </section>
+    <button onClick={props.onClick} type="button">
+      {props.loading? <div className="loader"/> : props.label}
+    </button>
   );
-}
+};
 
-function Myicon(){
-  return <i>🔥</i>;
-}
+// Alternative
+// const LoadingButton = (props) => {
+//   const { onClick, loading, label } = props;
+//   return (
+//     <button onClick={onClick} type="button">
+//       {loading ? <div className="loader" /> : label}
+//     </button>
+//   );
+// };
+
+// Alternative
+// const LoadingButton = ({ onClick, loading, label }) => {
+//   return (
+//     <button onClick={onClick} type="button">
+//       {loading ? <div className="loader" /> : label}
+//     </button>
+//   );
+// };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div className="App">
-      <Card icon={<Myicon/>}>
-        <p>The body of the card</p>
-      </Card>
-    </div>
+    <>
+      <LoadingButton 
+        label="Press Me"
+        loading={isLoading}
+        onClick={() => setIsLoading(!isLoading)}
+      />
+    </>
   );
 }
 
