@@ -3,23 +3,22 @@ import './App.css';
 import React, { useState } from 'react';
 import './index.css'
 
-const data = [
-  {id: 1, name: 'Fido 🐕'},
-  {id: 2, name: 'Snowball 🐕'},
-  {id: 3, name: 'Murphy 🐕'},
-  {id: 4, name: 'Zelda 🐕'}
-];
-
 function App() {
+
+  const[value, setValue] = useState('');
+
+  const eventHandler = (e) => {
+    setValue(e.target.value);
+    console.log(e.target);
+  };
+
   return(
     <>
-      <ul>
-        { data &&
-          data.map( ({id,name}) => {
-            return <li key={id}>{name}</li>
-          } )
-        }
-      </ul>
+      <input 
+        value={value}
+        placeholder='Enter some text'
+        onChange={eventHandler}
+      />
     </>
   );
 }
